@@ -5,11 +5,14 @@ import { loadModules } from "esri-loader";
 let view = null;
 
 const MapView = () => {
-  const [floorFilter, setFloorFilter] = useState("1=1");
-  const [buildingFilter, setBuildingFilter] = useState("'M'");
+  const [floorFilter, setFloorFilter] = useState("1=1");  // 1 = 1 m3naha all
+
+
+  // i will configure it later 
+  // const [buildingFilter, setBuildingFilter] = useState("'M'");
 
   useEffect(() => {
-    // connectMqtt(options,'floorFilter', setFloorFilter);
+       // connectMqtt(options,'floorFilter', setFloorFilter);   u must have an a machine (BM, Cloud, etc )
     // connectMqtt(options,'buildingFilter', setBuildingFilter);
 
     loadModules([
@@ -66,8 +69,8 @@ const MapView = () => {
             // Walls: `BUILDINGKEY = '${buildingFilter}' AND ${floorFilter}`,
             // Doors: `BUILDINGKEY = '${buildingFilter}' AND ${floorFilter}`,
             "Building Wireframe":"BUILDINGID = 'Q'", //هنا بتقولة انت عايز مبني اية الل يظهر )العمدان)
-            "Interior Space": "BUILDING = 'Q'",
-            Walls: "BUILDINGKEY = 'Q'",
+            "Interior Space": "BUILDING = 'Q'",  // المساحات الداخلية 
+            Walls: "BUILDINGKEY = 'Q'",  
             Doors: "BUILDINGKEY = 'Q'"
           };
 
@@ -81,7 +84,8 @@ const MapView = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, [buildingFilter,floorFilter]);
+  }, [floorFilter]); //[buildingFilter,floorFilter]);
+
 
   return (
     <div>
